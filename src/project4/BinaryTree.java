@@ -13,7 +13,7 @@ public class BinaryTree implements Treeable{
     private Node root;
     
     private void deleteNoChildren(Node parent, boolean leftChild) {
-
+        
     }
 
     private void deleteSingleChild(Node parent, boolean leftChild, Node temp) {
