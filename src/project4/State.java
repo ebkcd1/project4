@@ -20,7 +20,7 @@ public class State {
     /**
      * Constructor for State.
      * @param readLine This contains the string data in the form of a String
-     * It is parsed by the contructor and variables are set based up on it.
+     * It is parsed by the constructor and variables are set based up on it.
      */
     public State(String readLine) {
         if (readLine.length() > 55) {
