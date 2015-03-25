@@ -1,0 +1,7 @@
+States.Input.A.txt and States.Input.B.txt Master File Description
+
+State,Capital,Abbr,Population,Region,Region#
+
+Example:
+
+Texas,Austin,TX,19759614,Southwest,5
