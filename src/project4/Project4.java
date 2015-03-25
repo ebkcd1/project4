@@ -1,13 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project4;
 
 /**
- *
- * @author eric
+ * COP 3538
+ * Project 4
+ * Due: /2015
+ * 
+ * Authors:
+ * Denis Amorim
+ * Brian Azevedo
+ * Eric Smith
+ * 
+ * Description:
+ * This program tests various search and sort algorithms.
  */
 public class Project4 {
 
@@ -15,7 +19,7 @@ public class Project4 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       
     }
     
 }
