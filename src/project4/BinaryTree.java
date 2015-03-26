@@ -21,7 +21,21 @@ public class BinaryTree implements Treeable{
     }
 
     private void deleteSingleChild(Node parent, boolean leftChild, Node temp) {
-
+        if(leftChild){
+            temp = parent.getLeftChild();
+            if(temp.getLeftChild() != null){
+                parent.setLeftChild(temp.getLeftChild());
+            }else{
+                parent.setRightChild(temp.getRightChild());
+            }
+        }else{
+            temp = parent.getRightChild();
+            if(temp.getLeftChild() != null){
+                parent.setLeftChild(temp.getLeftChild());
+            }else{
+                parent.setRightChild(temp.getRightChild());
+            }
+        }
     }
 
     private void deleteWithChildren(Node parent, boolean leftChild, Node temp) {
