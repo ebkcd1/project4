@@ -109,12 +109,16 @@ public class BinaryTree implements Treeable {
             if(current.getLeftChild() == null){
                 current.setLeftChild(node);
             }else{
+            
+                //Recursive call
                 insert(current.getLeftChild(), node);
             }
         }else{
             if(current.getRightChild() == null){
                 current.setRightChild(node);
             }else{
+                
+                //Recursive call
                 insert(current.getRightChild(), node);
             }
         }
