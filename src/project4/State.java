@@ -37,6 +37,14 @@ public class State {
     public String getStateName() {
         return stateName;
     }
+    
+    /**
+     * 
+     * @return population of the state
+     */
+    public int getPopulation(){
+        return population;
+    }
 
     /**
      * 
