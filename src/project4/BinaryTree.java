@@ -12,6 +12,12 @@ package project4;
 public class BinaryTree implements Treeable{
     private Node root;
     
+    /**
+     * Deletes a node from the binary` tree where both children are null
+     * and sets the appropriate child of the parent to null
+     * @param parent Parent node of the node to be deleted
+     * @param leftChild Boolean of whether or not the current node is the leftchild
+     */
     private void deleteNoChildren(Node parent, boolean leftChild) {
         if(leftChild == true){
             parent.setLeftChild(null);
@@ -20,6 +26,13 @@ public class BinaryTree implements Treeable{
         }
     }
 
+    /**
+     * Deletes a node from the binary tree where only one child is null
+     * set the appropriate child of the parent to the existing child of the node to delete
+     * @param parent Parent of the current node
+     * @param leftChild Boolean of whether the current node is the leftchild
+     * @param temp Temp node to store the current node
+     */
     private void deleteSingleChild(Node parent, boolean leftChild, Node temp) {
         if(leftChild){
             temp = parent.getLeftChild();
