@@ -17,10 +17,14 @@ public class BinaryTree implements Treeable {
      * leftchild
      */
     private void deleteNoChildren(Node parent, boolean leftChild) {
-        if (leftChild == true) {
-            parent.setLeftChild(null);
+        if (parent == root && parent.getLeftChild() == null) {
+            root = null;
         } else {
-            parent.setRightChild(null);
+            if (leftChild == true) {
+                parent.setLeftChild(null);
+            } else {
+                parent.setRightChild(null);
+            }
         }
     }
 
@@ -34,19 +38,17 @@ public class BinaryTree implements Treeable {
      * @param temp Temp node to store the current node
      */
     private void deleteSingleChild(Node parent, boolean leftChild, Node temp) {
-        if (leftChild) {
-            temp = parent.getLeftChild();
-            if (temp.getLeftChild() != null) {
-                parent.setLeftChild(temp.getLeftChild());
+        if (temp.getLeftChild() == null) { // Determine which child exists
+            if (leftChild) { // Determine path from parent deleted node is on
+                parent.setLeftChild(temp.getRightChild()); // Update parent’s left pointer
             } else {
-                parent.setRightChild(temp.getRightChild());
+                parent.setRightChild(temp.getRightChild()); // Update parent’s right pointer
             }
         } else {
-            temp = parent.getRightChild();
-            if (temp.getLeftChild() != null) {
-                parent.setLeftChild(temp.getLeftChild());
+            if (leftChild) { // Determine path from parent deleted node is on
+                parent.setLeftChild(temp.getLeftChild()); // Update parent’s left pointer
             } else {
-                parent.setRightChild(temp.getRightChild());
+                parent.setRightChild(temp.getLeftChild()); // Update parent’s right pointer
             }
         }
     }
@@ -64,7 +66,11 @@ public class BinaryTree implements Treeable {
 
     @Override
     public void display(boolean ascending) {
-
+        if(ascending){
+            displayTreeLNR(root);
+        }else{
+            displayTreeRNL(root);
+        }
     }
 
     private void displayTreeLNR(Node node) {
@@ -76,6 +82,7 @@ public class BinaryTree implements Treeable {
     }
 
     /**
+     * Inserts the provided state object into the binary tree
      *
      * @param item
      */
@@ -84,49 +91,53 @@ public class BinaryTree implements Treeable {
         if (root == null) {
             root = item;
         } else {
-            if (item.getState().getPopulation() <= root.getState().getPopulation()) {
-                insert(item);
-            }
+            insert(root, item);
         }
     }
-    
-        /**
-         * Inserts the provided state object into the binary tree
-         *
-         * @param current The node within the tree that is being compared against
-         * the node to be inserted
-         * @param node The node to be inserted
-         */
+
+    /**
+     * Inserts the provided state object into the binary tree
+     *
+     * @param current The node within the tree that is being compared against
+     * the node to be inserted
+     * @param node The node to be inserted
+     */
     private void insert(Node current, Node node) {
         //Variable declarations
         int currentNodePopulation, nodePopulation;
-        
+
         //Variable assignment
         nodePopulation = node.getState().getPopulation();
         currentNodePopulation = current.getState().getPopulation();
-        
-        if(nodePopulation <= currentNodePopulation){
-            if(current.getLeftChild() == null){
+
+        //If nodePopulation is <= to currentNodePopulation, find insertion point
+        //on the left branch of currentNode. Else go down the right branch
+        if (nodePopulation <= currentNodePopulation) {
+            if (current.getLeftChild() == null) {
                 current.setLeftChild(node);
-            }else{
-            
+            } else {
+
                 //Recursive call
                 insert(current.getLeftChild(), node);
             }
-        }else{
-            if(current.getRightChild() == null){
+        } else {
+            if (current.getRightChild() == null) {
                 current.setRightChild(node);
-            }else{
-                
+            } else {
+
                 //Recursive call
                 insert(current.getRightChild(), node);
             }
         }
     }
 
+    /**
+     *
+     * @return true if the tree is empty
+     */
     @Override
     public boolean isEmpty() {
-        return false;
+        return root == null;
     }
 
     @Override
