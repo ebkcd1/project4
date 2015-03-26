@@ -6,10 +6,10 @@ package project4;
  */
 public class Node implements Linkable {
 
-    public State state;
-    public Node next;
-    public Node previous;
-    public Node leftChild, rightChild;
+    private State state;
+    private Node next;
+    private Node previous;
+    private Node leftChild, rightChild;
 
     /**
      * Node Constructor
