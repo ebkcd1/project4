@@ -13,8 +13,8 @@ public class BinaryTree implements Treeable {
      * sets the appropriate child of the parent to null
      *
      * @param parent Parent node of the node to be deleted
-     * @param leftChild Boolean of whether or not the current node is the
-     * leftchild
+     * @param leftChild Boolean of whether or not the current node is the left
+     * child
      */
     private void deleteNoChildren(Node parent, boolean leftChild) {
         if (parent == root && parent.getLeftChild() == null) {
@@ -66,9 +66,9 @@ public class BinaryTree implements Treeable {
 
     @Override
     public void display(boolean ascending) {
-        if(ascending){
+        if (ascending) {
             displayTreeLNR(root);
-        }else{
+        } else {
             displayTreeRNL(root);
         }
     }
@@ -140,9 +140,29 @@ public class BinaryTree implements Treeable {
         return root == null;
     }
 
+    /**
+     * Removes a State object with the specified population from the Bianry
+     * Tree. Note: The isEmpty method should be called first to prevent errors.
+     *
+     * @param population The population of the State to remove.
+     * @return The State object that was removed.
+     */
     @Override
     public Node remove(int population) {
+        boolean found = false;
+        Node currentNode = root;
+        int currentNodePopulation = root.getState().getPopulation();
 
-        return root;
+        if (currentNodePopulation == population) {
+            found = true;
+        }
+        while (!found) {
+            if (currentNodePopulation < population) {
+                currentNode = currentNode.getLeftChild();
+            } else {
+            }
+        }
+        return currentNode;
     }
 }
+
