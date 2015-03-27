@@ -28,10 +28,11 @@ public interface Treeable {
      */
     public boolean isEmpty();
 	
-	/**
-     * Removes a State object with the specified population from the Bianry Tree.
-     * 
-     * Note:  The isEmpty method should be called first to prevent errors.
+    /**
+     * Removes a State object with the specified population from the Bianry
+     * Tree.
+     * Note: The isEmpty method should be called first to prevent errors.
+     *
      * @param population The population of the State to remove.
      * @return The State object that was removed.
      */
