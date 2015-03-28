@@ -150,6 +150,7 @@ public class BinaryTree implements Treeable {
     @Override
     public Node remove(int population) {
         boolean found = false;
+        boolean leftChild = false;
         Node currentNode = root;
         int currentNodePopulation = root.getState().getPopulation();
 
@@ -157,12 +158,27 @@ public class BinaryTree implements Treeable {
             found = true;
         }
         while (!found) {
-            if (currentNodePopulation < population) {
-                currentNode = currentNode.getLeftChild();
+            if (currentNodePopulation == population) {
+                found = true;
             } else {
+                if (population < currentNodePopulation) {
+                    // Value is to the left of current node
+                    currentNode = currentNode.getLeftChild();
+                    leftChild = true;
+                } else {
+                    // Value is to the right of current node
+                    currentNode = currentNode.getRightChild();
+                    leftChild = false;
+                }
             }
+        }
+        if(currentNode.getLeftChild() != null && currentNode.getRightChild() != null){
+            //deleteWithChildren(currentNode, leftChild);
+        }else if(currentNode.getLeftChild() == null && currentNode.getRightChild() == null){
+            deleteNoChildren(currentNode, leftChild);
+        }else if(currentNode.getLeftChild() != null || currentNode.getRightChild() != null){
+            //deleteSingleChild(currentNode, leftChild);
         }
         return currentNode;
     }
 }
-
