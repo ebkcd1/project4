@@ -82,26 +82,43 @@ public class BinaryTree implements Treeable {
         }
     }
 
-        @Override
-        public void display
-        (boolean ascending
-        
-            ) {
+    /**
+     * 
+     * @param ascending
+     */
+    @Override
+    public void display(boolean ascending) {
         if (ascending) {
-                displayTreeLNR(root);
-            } else {
-                displayTreeRNL(root);
-            }
+            displayTreeLNR(root);
+        } else {
+            displayTreeRNL(root);
         }
-
-    
-
-    private void displayTreeLNR(Node node) {
-
     }
 
-    private void displayTreeRNL(Node node) {
+    /**
+     * Displays the contents of the tree in ascending order
+     *
+     * @param node
+     */
+    private void displayTreeLNR(Node node) {
+        if (node != null) {
+            displayTreeLNR(node.getLeftChild());
+            System.out.println(node.toString());
+            displayTreeLNR(node.getRightChild());
+        }
+    }
 
+    /**
+     * Displays the contents of the tree in descending order
+     *
+     * @param node
+     */
+    private void displayTreeRNL(Node node) {
+        if (node != null) {
+            displayTreeRNL(node.getRightChild());
+            System.out.println(node.toString());
+            displayTreeRNL(node.getLeftChild());
+        }
     }
 
     /**
