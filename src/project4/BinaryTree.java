@@ -83,7 +83,7 @@ public class BinaryTree implements Treeable {
     }
 
     /**
-     * 
+     *
      * @param ascending
      */
     @Override
@@ -192,32 +192,39 @@ public class BinaryTree implements Treeable {
         boolean found = false;
         boolean leftChild = false;
         Node currentNode = root;
+        Node parentNode = null;
         int currentNodePopulation = root.getState().getPopulation();
 
         if (currentNodePopulation == population) {
             found = true;
         }
-        while (!found) {
+        while (!found && currentNode != null) {
             if (currentNodePopulation == population) {
                 found = true;
             } else {
                 if (population < currentNodePopulation) {
                     // Value is to the left of current node
+                    parentNode = currentNode;
                     currentNode = currentNode.getLeftChild();
+                    currentNodePopulation = currentNode.getState().getPopulation();
                     leftChild = true;
                 } else {
                     // Value is to the right of current node
+                    parentNode = currentNode;
                     currentNode = currentNode.getRightChild();
+                    currentNodePopulation = currentNode.getState().getPopulation();
                     leftChild = false;
                 }
             }
         }
-        if (currentNode.getLeftChild() != null && currentNode.getRightChild() != null) {
-            //deleteWithChildren(currentNode, leftChild);
-        } else if (currentNode.getLeftChild() == null && currentNode.getRightChild() == null) {
-            deleteNoChildren(currentNode, leftChild);
-        } else if (currentNode.getLeftChild() != null || currentNode.getRightChild() != null) {
-            //deleteSingleChild(currentNode, leftChild);
+        if (currentNode != null) {
+            if (currentNode.getLeftChild() != null && currentNode.getRightChild() != null) {
+                deleteWithChildren(parentNode, leftChild, currentNode);
+            } else if (currentNode.getLeftChild() == null && currentNode.getRightChild() == null) {
+                deleteNoChildren(currentNode, leftChild);
+            } else if (currentNode.getLeftChild() != null || currentNode.getRightChild() != null) {
+                deleteSingleChild(parentNode, leftChild, currentNode);
+            }
         }
         return currentNode;
     }
