@@ -1,5 +1,7 @@
 package project4;
 
+import java.io.IOException;
+
 /**
  * COP 3538
  * Project 4
@@ -18,8 +20,10 @@ public class Project4 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-       
+    public static void main(String[] args) throws IOException {
+       Driver driver = new Driver();
+
+       driver.execute();
     }
     
 }
